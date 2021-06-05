@@ -1,6 +1,7 @@
 package za.ac.cput.loginGUI;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 import javax.swing.*;
 
 public class SignUp extends JFrame implements ActionListener{
@@ -134,9 +135,14 @@ public class SignUp extends JFrame implements ActionListener{
 
         if (e.getActionCommand().equals("Submit")) {
             //if statement to project error's in case of empty fields
+
             //char value to return passwordField
             char[] input = password.getPassword();
             char[] confirmation = confirmPassword.getPassword();
+
+            //String to compare passwords
+            String password1 = Arrays.toString(password.getPassword());
+            String password2 = Arrays.toString(confirmPassword.getPassword());
 
             if(userName.getText().isEmpty() || input.length == 0 || confirmation.length == 0){
                 if(userName.getText().isEmpty()){
@@ -158,20 +164,18 @@ public class SignUp extends JFrame implements ActionListener{
                 }
                 return;
             }
-            else if(input.length < 5 || confirmation.length < 5 || input.length == confirmation.length){
-                if(input.length < 5) {
-                    JOptionPane.showMessageDialog(null, "Password needs to be 5 characters or more");
-                }else if(confirmation.length < 5){
-                    JOptionPane.showMessageDialog(null, "Password needs to be 5 characters or more");
-                }else if(input.length == confirmation.length){
-                    JOptionPane.showMessageDialog(null, "Registering");
-                    userName.setText("");
-                    password.setText("");
-                    confirmPassword.setText("");
-                    lblErrorOne.setVisible(false);
-                    lblErrorTwo.setVisible(false);
-                    lblErrorThree.setVisible(false);
-                }
+            if(input.length < 5 || confirmation.length < 5){
+                JOptionPane.showMessageDialog(null, "Password needs to be 5 characters or more");
+                return;
+            }
+            if(input.length == confirmation.length && password1.equals(password2)){
+                JOptionPane.showMessageDialog(null, "Registering");
+                userName.setText("");
+                password.setText("");
+                confirmPassword.setText("");
+                lblErrorOne.setVisible(false);
+                lblErrorTwo.setVisible(false);
+                lblErrorThree.setVisible(false);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Password does not match");
