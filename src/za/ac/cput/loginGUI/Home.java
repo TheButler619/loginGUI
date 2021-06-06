@@ -6,46 +6,76 @@ import java.awt.event.ActionListener;
 
 
 public class Home extends JFrame implements ActionListener {
-    private JPanel panelNorth, panelEast, panelWest;
-    private JLabel lblHome;
-    private JButton btnCalender, btnTask, btnNotification, btnProgress;
+    private JPanel panelCenter, panelSouth, panelEast, panelWest;
+    private JButton btnCalender, btnTask, btnNotification, btnProgress, btnLogOut;
 
-    private Home(){
-        panelNorth = new JPanel();
+    public Home(){
+        super("Home");
+        panelCenter = new JPanel();
         panelEast = new JPanel();
         panelWest = new JPanel();
-        lblHome = new JLabel("Welcome", SwingConstants.CENTER);
+        panelSouth = new JPanel();
         btnCalender = new JButton("View Calender");
         btnNotification = new JButton("View Notifications");
         btnTask = new JButton("View Tasks");
         btnProgress = new JButton("View Progress");
+        btnLogOut = new JButton("Log Out");
     }
-    private void setGUI(){
-        panelNorth.setLayout(new GridLayout(1,1));
-        panelEast.setLayout(new GridLayout(2,1));
-        panelWest.setLayout(new GridLayout(2,1));
+    public void setGUI(){
+        panelCenter.setLayout(new GridLayout(2,2,3,3));
+        panelEast.setLayout(new GridLayout(1,1,3,3));
+        panelWest.setLayout(new GridLayout(4,1,3,3));
+        panelSouth.setLayout(new GridLayout(1,1));
 
-        panelNorth.add(lblHome);
+        panelCenter.setBorder(BorderFactory.createEmptyBorder(100,90,100,90));
+        panelSouth.setBorder(BorderFactory.createEmptyBorder(0,250,25,250));
 
-        panelWest.add(btnCalender);
-        panelWest.add(btnTask);
+        //setting the GUI Background Color
+        panelCenter.setBackground(new Color(255,205,108));
+        panelSouth.setBackground(new Color(255,205,108));
+        panelWest.setBackground(new Color(255,205,108));
+        panelEast.setBackground(new Color(255,205,108));
 
-        panelEast.add(btnNotification);
-        panelEast.add(btnProgress);
+        btnTask.setPreferredSize(new Dimension(60, 40));
+        btnNotification.setPreferredSize(new Dimension(60, 40));
+        btnProgress.setPreferredSize(new Dimension(60, 40));
+        btnCalender.setPreferredSize(new Dimension(60, 40));
+
+        //btnTask.setPreferredSize(new Dimension(100, 20));
+        //btnNotification.setPreferredSize(new Dimension(100, 20));
+        //btnProgress.setPreferredSize(new Dimension(100, 20));
+        //btnCalender.setPreferredSize(new Dimension(100, 20));
+
+        btnLogOut.setPreferredSize(new Dimension(90, 40));
+
+        panelCenter.add(btnCalender);
+        panelCenter.add(btnTask);
+        panelCenter.add(btnNotification);
+        panelCenter.add(btnProgress);
+
+        //panelWest.add(btnCalender);
+        //panelWest.add(btnTask);
+        //panelWest.add(btnNotification);
+        //panelWest.add(btnProgress);
+
+        panelSouth.add(btnLogOut);
 
         btnCalender.addActionListener(this);
         btnProgress.addActionListener(this);
         btnNotification.addActionListener(this);
         btnTask.addActionListener(this);
+        btnLogOut.addActionListener(this);
 
-        this.add(panelNorth, BorderLayout.NORTH);
-        this.add(panelEast, BorderLayout.EAST);
-        this.add(panelWest, BorderLayout.WEST);
+        this.add(panelCenter, BorderLayout.CENTER);
+        this.add(panelSouth, BorderLayout.SOUTH);
+        //this.add(panelWest, BorderLayout.WEST);
+        //this.add(panelEast, BorderLayout.EAST);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -60,6 +90,11 @@ public class Home extends JFrame implements ActionListener {
         }
         else if (e.getActionCommand().equals("View Progress")) {
             JOptionPane.showMessageDialog(null, "Showing progress");
+        }
+        else if (e.getActionCommand().equals("Log Out")) {
+            this.dispose();
+            Login login = new Login();
+            login.setLogin();
         }
     }
 

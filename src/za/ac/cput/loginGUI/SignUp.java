@@ -46,7 +46,7 @@ public class SignUp extends JFrame implements ActionListener{
         panelSouth.setLayout(new GridLayout(1,1));
 
         panelNorth.setBorder(BorderFactory.createEmptyBorder(25,25,5,25));
-        panelCenter.setBorder(BorderFactory.createEmptyBorder(25,25,25,25));
+        panelCenter.setBorder(BorderFactory.createEmptyBorder(50,25,25,25));
         panelSouth.setBorder(BorderFactory.createEmptyBorder(0,25,25,25));
 
         //make error messages red
@@ -67,7 +67,7 @@ public class SignUp extends JFrame implements ActionListener{
         //remove border around button
         btnLogin.setContentAreaFilled(false);
         btnLogin.setBorder(null);
-        btnLogin.setBorderPainted(false);;
+        btnLogin.setBorderPainted(false);
 
         //setting the GUI Background Color
         panelNorth.setBackground(new Color(255,205,108));
@@ -78,10 +78,6 @@ public class SignUp extends JFrame implements ActionListener{
         lblErrorOne.setVisible(false);
         lblErrorTwo.setVisible(false);
         lblErrorThree.setVisible(false);
-
-        //Setting size of textField, changing size of GUI too
-        userName.setPreferredSize(new Dimension(200, 20));
-        password.setPreferredSize(new Dimension(200, 20));
 
         //Adding necessary components to GUI
         panelNorth.add(lblImage);
@@ -118,6 +114,7 @@ public class SignUp extends JFrame implements ActionListener{
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
 
     }
     @Override
@@ -170,12 +167,16 @@ public class SignUp extends JFrame implements ActionListener{
             }
             if(input.length == confirmation.length && password1.equals(password2)){
                 JOptionPane.showMessageDialog(null, "Registering");
+                JOptionPane.showMessageDialog(null, "Logging in");
                 userName.setText("");
                 password.setText("");
                 confirmPassword.setText("");
                 lblErrorOne.setVisible(false);
                 lblErrorTwo.setVisible(false);
                 lblErrorThree.setVisible(false);
+                this.dispose();
+                Home home = new Home();
+                home.setGUI();
             }
             else{
                 JOptionPane.showMessageDialog(null, "Password does not match");

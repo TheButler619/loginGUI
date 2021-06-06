@@ -42,7 +42,7 @@ public class Login extends JFrame implements ActionListener{
         panelSouth.setLayout(new GridLayout(1,1));
 
         panelNorth.setBorder(BorderFactory.createEmptyBorder(25,25,5,25));
-        panelCenter.setBorder(BorderFactory.createEmptyBorder(25,25,25,25));
+        panelCenter.setBorder(BorderFactory.createEmptyBorder(50,25,50,25));
         panelSouth.setBorder(BorderFactory.createEmptyBorder(0,25,25,25));
 
         //make error messages red
@@ -71,10 +71,6 @@ public class Login extends JFrame implements ActionListener{
         //Error Handling set to invisible
         lblErrorOne.setVisible(false);
         lblErrorTwo.setVisible(false);
-
-        //Setting size of textField, changing size of GUI too
-        userName.setPreferredSize(new Dimension(200, 20));
-        password.setPreferredSize(new Dimension(200, 20));
 
         //Adding necessary components to GUI
         panelNorth.add(lblImage);
@@ -108,6 +104,7 @@ public class Login extends JFrame implements ActionListener{
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
 
     }
     @Override
@@ -140,6 +137,9 @@ public class Login extends JFrame implements ActionListener{
                 }
                 return;
             }
+            if(input.length < 5){
+                JOptionPane.showMessageDialog(null, "Password entered is too short");
+            }
 
             else{
                 JOptionPane.showMessageDialog(null, "Logging in");
@@ -148,6 +148,8 @@ public class Login extends JFrame implements ActionListener{
                 lblErrorOne.setVisible(false);
                 lblErrorTwo.setVisible(false);
                 this.dispose();
+                Home home = new Home();
+                home.setGUI();
             }
 
         } else if (e.getActionCommand().equals("Don't have an account? Register here.")) {
