@@ -6,14 +6,14 @@ import java.awt.event.ActionListener;
 
 
 public class Home extends JFrame implements ActionListener {
-    private JPanel panelCenter, panelSouth, panelEast, panelWest;
+    private JPanel panelCenter, panelSouth;
     private JButton btnCalender, btnTask, btnNotification, btnProgress, btnLogOut;
 
     public Home(){
         super("Home");
         panelCenter = new JPanel();
-        panelEast = new JPanel();
-        panelWest = new JPanel();
+        //panelEast = new JPanel();
+        //panelWest = new JPanel();
         panelSouth = new JPanel();
         btnCalender = new JButton("View Calender");
         btnNotification = new JButton("View Notifications");
@@ -23,8 +23,8 @@ public class Home extends JFrame implements ActionListener {
     }
     public void setGUI(){
         panelCenter.setLayout(new GridLayout(2,2,3,3));
-        panelEast.setLayout(new GridLayout(1,1,3,3));
-        panelWest.setLayout(new GridLayout(4,1,3,3));
+        //panelEast.setLayout(new GridLayout(1,1,3,3));
+        //panelWest.setLayout(new GridLayout(4,1,3,3));
         panelSouth.setLayout(new GridLayout(1,1));
 
         panelCenter.setBorder(BorderFactory.createEmptyBorder(100,90,100,90));
@@ -33,8 +33,8 @@ public class Home extends JFrame implements ActionListener {
         //setting the GUI Background Color
         panelCenter.setBackground(new Color(255,205,108));
         panelSouth.setBackground(new Color(255,205,108));
-        panelWest.setBackground(new Color(255,205,108));
-        panelEast.setBackground(new Color(255,205,108));
+        //panelWest.setBackground(new Color(255,205,108));
+        //panelEast.setBackground(new Color(255,205,108));
 
         btnTask.setPreferredSize(new Dimension(60, 40));
         btnNotification.setPreferredSize(new Dimension(60, 40));
